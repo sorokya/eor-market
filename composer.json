@@ -1,0 +1,13 @@
+{
+    "name": "sorokya/eomarket",
+    "description": "a marketplace website for Endless Online",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Leek",
+            "email": "richard@richardleek.com"
+        }
+    ],
+    "require": {}
+}

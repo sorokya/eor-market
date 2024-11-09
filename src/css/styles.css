@@ -1,0 +1,175 @@
+body {
+  background: url('/img/back.jpg');
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+  text-align: center;
+  color: #fff;
+  background: #000;
+  opacity: 0.6;
+  margin-bottom: 1em;
+  padding: 1em 0;
+}
+
+#nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1em;
+}
+
+#nav-main {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#nav-main a {
+  text-decoration: none;
+}
+
+#nav-main a:hover {
+  text-decoration: underline;
+}
+
+#nav-main a.active {
+  font-weight:bold;
+}
+
+#nav-profile div:nth-child(2) {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-self: flex-end;
+}
+
+header h1, header h2 {
+  margin: 0;
+}
+
+header a {
+  color: #fff;
+}
+
+a{
+  color: unset;
+}
+
+a:visited {
+  color: unset;
+}
+
+footer {
+  font-size: 1em;
+  color: #fff;
+  background: #000;
+  opacity: 0.6;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: .5em;
+}
+
+#search {
+  width: 90%;
+  margin: auto;
+}
+
+#search-bar {
+  width: 100%;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+#results {
+  display: flex;
+  gap: 1em;
+  margin: 1em auto;
+  width: 90%;
+}
+
+.item {
+  width: 200px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border-radius: 5px;
+  padding: .5em;
+}
+
+.item-name {
+  display: table;
+  margin: auto;
+  font-size: 1.2em;
+}
+
+
+.item img {
+  height: 1.5em;
+  display: block; 
+  margin: .5em auto;
+}
+
+.small {
+  font-size: .5em;
+}
+
+.item p {
+  margin: .5em 0;
+}
+
+#item-offers {
+  width: 90%;
+  margin: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+}
+
+#item-offers th {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: .5em;
+  text-align: left;
+}
+
+#item-offers th:first-child {
+  border-top-left-radius: 5px;
+}
+
+#item-offers th:last-child {
+  border-top-right-radius: 5px;
+}
+
+#item-offers td {
+  padding: .5em;
+}
+
+#item-offers tr {
+  background: #fff;
+}
+
+#item-offers tr:nth-child(even) {
+  background: #eee;
+}
+
+.login-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.signup-link {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}

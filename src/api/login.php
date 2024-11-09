@@ -19,7 +19,7 @@ if (strlen($password) == 0) {
 
 $mysqli = openConnection();
 
-$stmt = $mysqli->prepare("SELECT `name`, `verified`, `created_at`, `password_hash` FROM Accounts WHERE `name` = ?");
+$stmt = $mysqli->prepare("SELECT `id`, `name`, `verified`, `created_at`, `password_hash` FROM Accounts WHERE `name` = ?");
 $stmt->bind_param("s", $username);
 $stmt->execute();
 
@@ -54,7 +54,10 @@ if ($row['verified'] == 0) {
   }
 }
 
-setcookie("user", $username, [
+setcookie("user", json_encode([
+  'id' => $row['id'],
+  'name' => $username,
+]), [
   'secure' => true,
   'httponly' => true,
   'expires' => time() + 60 * 20,

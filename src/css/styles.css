@@ -173,3 +173,47 @@ footer {
 .signup-link:hover {
     text-decoration: underline;
 }
+
+#btn-add {
+  font-size: 1.5em;
+  float: right;
+}
+
+#dialog-add input[name="item-name"] {
+  width: 100%;
+}
+
+#dialog-add #add-item-search-results {
+  width: 100%;
+}
+
+#dialog-add .add-item-search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5em;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+
+#dialog-add .add-item-search-item:hover {
+  background: #eee;
+}
+
+#dialog-item-add {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+#add-item-preview {
+  width: 100%;
+  text-align: center;
+}
+
+
+#add-item-preview img {
+  height: 3em;
+}

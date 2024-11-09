@@ -3,7 +3,7 @@
 
 <?php
 
-$username = $_COOKIE['user'] ?? null;
+$user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 
 ?>
 
@@ -22,14 +22,14 @@ $username = $_COOKIE['user'] ?? null;
         <a href="javascript:;">About</a>
       </div>
       <div id="nav-profile">
-        <div class="<?=$username == null ? 'hidden' : ''?>">
+        <div class="<?=$user == null ? 'hidden' : ''?>">
           <p>Hello, <strong>
-              <?=$username?>
+              <?=$user->name?>
             </strong> not
-            <?=$username?>? <a id="btn-logout" href="javascript:;">Logout</a>
+            <?=$user->name?>? <a id="btn-logout" href="javascript:;">Logout</a>
           </p>
         </div>
-        <div class="<?=$username != null ? 'hidden' : ''?>">
+        <div class="<?=$user != null ? 'hidden' : ''?>">
           <form class="login-form">
             <input type="text" placeholder="Username" name="username" />
             <input type="password" placeholder="Password" name="password" />
@@ -48,48 +48,9 @@ $username = $_COOKIE['user'] ?? null;
     </label>
     <select id="select-item-type">
       <option value="all">All types</option>
-      <option value="0">Static</option>
-      <option value="1">General</option>
-      <option value="2">Money</option>
-      <option value="3">Potion</option>
-      <option value="4">Teleport</option>
-      <option value="5">Transformation</option>
-      <option value="6">EXP Reward</option>
-      <option value="7">Skill Book</option>
-      <option value="8">Reserved</option>
-      <option value="9">Key</option>
-      <option value="10">Weapon</option>
-      <option value="11">Shield</option>
-      <option value="12">Clothing</option>
-      <option value="13">Hat</option>
-      <option value="14">Boots</option>
-      <option value="15">Gloves</option>
-      <option value="16">Accessory</option>
-      <option value="17">Belt</option>
-      <option value="18">Necklace</option>
-      <option value="19">Ring</option>
-      <option value="20">Bracelet</option>
-      <option value="21">Bracer</option>
-      <option value="22">Costume</option>
-      <option value="23">Costume Hat</option>
-      <option value="24">Wings</option>
-      <option value="25">Buddy</option>
-      <option value="26">Buddy 2</option>
-      <option value="27">Torch</option>
-      <option value="28">Beverage</option>
-      <option value="29">Effect</option>
-      <option value="30">Hairdye</option>
-      <option value="31">Hairtool</option>
-      <option value="32">Cure</option>
-      <option value="33">Title</option>
-      <option value="34">Visual Document</option>
-      <option value="35">Audio Document</option>
-      <option value="36">Transport Ticket</option>
-      <option value="37">Fireworks</option>
-      <option value="38">Explosive</option>
-      <option value="39">Buff</option>
-      <option value="40">Debuff</option>
+      <? include './partials/item_type_options.php' ?>
     </select>
+    <button id="btn-add" class="<?=$user == null ? 'hidden' : ''?>">Add Item</button>
   </form>
 
   <div id="results">
@@ -115,7 +76,34 @@ $username = $_COOKIE['user'] ?? null;
     Powered by <a href="https://eor-api.exile-studios.com/">EOR API</a>
   </footer>
 
-  <div id="dialog-signup" class="hidden">
+  <div id="dialog-add" style="display: none">
+    <form id="dialog-item-search">
+      <input type="text" placeholder="Item Name" name="item-name">
+      <div id="add-item-search-results">
+      </div>
+    </form>
+    <form id="dialog-item-add" class="hidden">
+      <div id="add-item-preview">
+        <img src="#" />
+        <span class="item-name"></span>
+      </div>
+      <div>
+        <div>
+          <label for="add-item-amount">Amount</label><br />
+          <input type="number" name="amount" id="add-item-amount">
+        </div>
+        <div>
+          <label for="add-item-price">Price</label><br />
+          <input type="number" name="price" id="add-item-price">
+        </div>
+        <br />
+        <button type="button">Cancel</button>
+        <button type="submit">Add Item</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="dialog-signup" style="display: none">
     <form>
       <div>
         <label for="signup-username">Username</label>
@@ -138,6 +126,7 @@ $username = $_COOKIE['user'] ?? null;
       <p id="signup-success" class="hidden"></p>
 
       <button type="submit">Signup</button>
+    </form>
   </div>
 
   <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>

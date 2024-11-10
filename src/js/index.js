@@ -377,11 +377,35 @@ function setupSignupModal() {
   const $confirmPassword = $dialog.find('[name="confirm-password"]');
   const $form = $dialog.find('form');
   const $submit = $dialog.find('[type="submit"]');
+  const $success = $dialog.find('#signup-success');
+  const $pre = $success.find('pre');
+  const $btnCopy = $success.find('button[name="copy"]');
+  const $btnClose = $dialog.find('button[name="close"]');
+
+  $username.keyup(function(e) {
+    if (e.key === 'Enter') {
+      $form.submit();
+    }
+  });
+
+  $password.keyup(function(e) {
+    if (e.key === 'Enter') {
+      $form.submit();
+    }
+  });
+
+  $confirmPassword.keyup(function(e) {
+    if (e.key === 'Enter') {
+      $form.submit();
+    }
+  });
 
   $('.signup-link').click(function() {
     $username.val('');
     $password.val('');
     $confirmPassword.val('');
+    $success.addClass('hidden');
+    $submit.removeClass('hidden');
     $dialog.dialog({
       title: 'Sign up',
       modal: true,
@@ -389,6 +413,16 @@ function setupSignupModal() {
   });
 
   $form.submit(onSubmit);
+
+  $btnCopy.click(function(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText($pre.text());
+  });
+
+  $btnClose.click(function(e) {
+    e.preventDefault();
+    $dialog.dialog('close');
+  });
 
   function onSubmit(e) {
     e.preventDefault();
@@ -421,8 +455,9 @@ function setupSignupModal() {
       if (res.error) {
         showError(res.error);
       } else {
-        $dialog.dialog('close');
-        showSuccess(res.data.message);
+        $pre.text(`!marketplace register ${res.data.code}`);
+        $submit.addClass('hidden');
+        $success.removeClass('hidden');
       }
     });
 

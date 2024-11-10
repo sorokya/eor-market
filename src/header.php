@@ -53,8 +53,12 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 
     <br />
 
-    <p id="signup-error" class="hidden"></p>
-    <p id="signup-success" class="hidden"></p>
+    <div id="signup-success" class="hidden">
+      Your account has been registered! Please sent the below whisper to Marketplace in game to verify your account:
+      <pre></pre>
+      <button name="copy">Copy to clipboard</button>
+      <button name="close">Close</button>
+    </div>
 
     <button type="submit">Signup</button>
   </form>

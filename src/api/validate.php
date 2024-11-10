@@ -30,7 +30,7 @@ if (strlen($code) != 5) {
 
 $mysqli = openConnection();
 
-$stmt = $mysqli->prepare("SELECT `name`, `verified`, `created_at`
+$stmt = $mysqli->prepare("SELECT `name`, `verified`, `created_at`, `verify_code`
 FROM Accounts
 WHERE `name` = ?");
 
@@ -64,7 +64,7 @@ if ($diff > FIVE_MINUTES) {
   exit;
 }
 
-if (strtoupper($code) != $row['code']) {
+if (strtoupper($code) != $row['verify_code']) {
   http_response_code(400);
   echo json_encode(['error' => 'Invalid code. Please double check the code']);
   exit;

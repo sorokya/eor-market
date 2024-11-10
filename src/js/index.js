@@ -31,8 +31,10 @@ function loadItems() {
 
 
   $.get('/api/list-items.php', function(res) {
-    if (res.error && res.error !== 'No results') {
-      showError(res.error);
+    if (res.error) {
+      if (res.error !== 'No results') {
+        showError(res.error);
+      }
       return;
     }
 
@@ -72,8 +74,10 @@ function loadMyItems() {
   });
 
   $.get('/api/list-my-items.php', function(res) {
-    if (res.error && res.error !== 'No results') {
-      showError(res.error);
+    if (res.error) {
+      if (res.error !== 'No results') {
+        showError(res.error);
+      }
       return;
     }
 

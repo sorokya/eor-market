@@ -22,13 +22,12 @@ while ($row = $result->fetch_assoc()) {
   }));
 
   if (count($item) > 0) {
-
-  $res[] = [
-    'id' => $row['item_id'],
-    'amount' => $row['amount'],
-    'price' => $row['price'],
-    'name' => $item[0]['name'],
-  ];
+    $res[] = [
+      'id' => $row['item_id'],
+      'amount' => $row['amount'],
+      'price' => $row['price'],
+      'name' => $item[0]['name'],
+    ];
   }
 }
 

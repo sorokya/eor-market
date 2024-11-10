@@ -2,6 +2,7 @@ body {
   background: url('/img/back-dark.jpg');
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #fff;
 }
 
 header {
@@ -122,6 +123,11 @@ footer {
   margin: 2em auto;
   width: 90%;
   flex-wrap: wrap;
+}
+
+#results h1 {
+  width: 100%;
+  text-align: center;
 }
 
 .item {

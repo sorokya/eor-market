@@ -27,8 +27,8 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
           <input type="text" placeholder="Username" name="username" />
           <input type="password" placeholder="Password" name="password" />
           <button type="submit">Login</button>
+          <button type="button" class="signup-link">Signup</button>
         </form>
-        <a href="javascript:;" class="signup-link">Sign Up</a>
       </div>
     </div>
   </div>

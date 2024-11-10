@@ -4,10 +4,11 @@ USE `eomarket`;
 CREATE TABLE IF NOT EXISTS `Accounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `password_hash` varchar(50) NOT NULL,
+  `password_hash` varchar(64) NOT NULL,
+  `verify_code` varchar(5) NOT NULL,
   `verified` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL,
+  `updated_at` datetime NULL,
   PRIMARY KEY (`id`) USING BTREE
 );
 

@@ -15,7 +15,7 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 </head>
 
 <body>
-  <? include 'header.php'; ?>
+  <? include './header.php'; ?>
 
   <div id="about">
     <p style="text-align: center">EO Market is a peer to peer marketplace for Endless Online. It is free to use and has
@@ -26,7 +26,7 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
         href="https://ko-fi.com/sorokya" target="_blank">here</a>.</p>
   </div>
 
-  <? include 'footer.php'; ?>
+  <? include './footer.php'; ?>
 
   <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="js/jquery-ui.min.js"></script>

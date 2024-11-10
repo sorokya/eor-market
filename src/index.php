@@ -14,7 +14,7 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 </head>
 
 <body>
-  <? include 'header.php'; ?>
+  <? include './header.php'; ?>
   <form id="search">
     <input type="text" id="search-bar" placeholder="Search for items" disabled />
     <button id="btn-add" class="<?=$user == null ? 'hidden' : ''?>">Add Item</button>
@@ -24,7 +24,7 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
   <div id="results">
   </div>
 
-  <? include 'footer.php'; ?>
+  <? include './footer.php'; ?>
 
   <div id="dialog-add" style="display: none">
     <form id="dialog-item-search">

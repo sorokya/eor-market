@@ -16,7 +16,7 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 <body>
   <? include 'header.php'; ?>
   <form id="search">
-    <input type="text" id="search-bar" placeholder="Search for items" />
+    <input type="text" id="search-bar" placeholder="Search for items" disabled />
     <button id="btn-add" class="<?=$user == null ? 'hidden' : ''?>">Add Item</button>
     <br />
   </form>
@@ -24,12 +24,7 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
   <div id="results">
   </div>
 
-  <footer>
-    <a href="https://endless-online.com">Endless Online</a> &copy; Copyright 2024 <a
-      href="https://www.vult-r.com/">Vult-r</a>
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    Powered by <a href="https://eor-api.exile-studios.com/">EOR API</a>
-  </footer>
+  <? include 'footer.php'; ?>
 
   <div id="dialog-add" style="display: none">
     <form id="dialog-item-search">

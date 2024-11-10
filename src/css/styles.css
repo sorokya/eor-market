@@ -219,3 +219,15 @@ footer {
 #add-item-preview img {
   height: 3em;
 }
+
+#about {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 1.5em;
+  padding: 1em;
+  border-radius: 5px;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-top: 2em;
+}

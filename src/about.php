@@ -17,18 +17,16 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 <body>
   <? include 'header.php'; ?>
 
-  <p style="text-align: center">EO Market is a peer to peer marketplace for Endless Online. It is free to use and has no
-    ads.</p>
+  <div id="about">
+    <p style="text-align: center">EO Market is a peer to peer marketplace for Endless Online. It is free to use and has
+      no
+      ads.</p>
 
-  <p style="text-align: center">If you would like to support the project, you can buy me a Ko-fi <a
-      href="https://ko-fi.com/sorokya" target="_blank">here</a>.</p>
+    <p style="text-align: center">If you would like to support the project, you can buy me a Ko-fi <a
+        href="https://ko-fi.com/sorokya" target="_blank">here</a>.</p>
+  </div>
 
-  <footer>
-    <a href="https://endless-online.com">Endless Online</a> &copy; Copyright 2024 <a
-      href="https://www.vult-r.com/">Vult-r</a>
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    Powered by <a href="https://eor-api.exile-studios.com/">EOR API</a>
-  </footer>
+  <? include 'footer.php'; ?>
 
   <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="js/jquery-ui.min.js"></script>

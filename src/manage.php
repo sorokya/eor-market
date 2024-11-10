@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html>
-
 <?php
 
 $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 
+if ($user == null) {
+  header('Location: /');
+  exit;
+}
+
 ?>
+
+<!DOCTYPE html>
+<html>
 
 <head>
   <title>Endless Online Market</title>
@@ -15,12 +20,6 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
 
 <body>
   <? include 'header.php'; ?>
-  <form id="search">
-    <input type="text" id="search-bar" placeholder="Search for items" />
-    <button id="btn-add" class="<?=$user == null ? 'hidden' : ''?>">Add Item</button>
-    <br />
-  </form>
-
   <div id="results">
   </div>
 
@@ -31,13 +30,8 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
     Powered by <a href="https://eor-api.exile-studios.com/">EOR API</a>
   </footer>
 
-  <div id="dialog-add" style="display: none">
-    <form id="dialog-item-search">
-      <input type="text" placeholder="Item Name" name="item-name">
-      <div id="add-item-search-results">
-      </div>
-    </form>
-    <form id="dialog-item-add" class="hidden">
+  <div id="dialog-update" style="display: none">
+    <form>
       <div id="add-item-preview">
         <img src="#" />
         <span class="item-name"></span>
@@ -52,8 +46,8 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
           <input type="number" name="price" id="add-item-price">
         </div>
         <br />
-        <button type="button">Cancel</button>
-        <button type="submit">Add Item</button>
+        <button type="button" id="btn-remove-item">Remove</button>
+        <button type="submit">Update</button>
       </div>
     </form>
   </div>

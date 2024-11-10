@@ -90,16 +90,18 @@ footer {
 #results {
   display: flex;
   gap: 1em;
-  margin: 1em auto;
+  margin: 2em auto;
   width: 90%;
+  flex-wrap: wrap;
 }
 
 .item {
-  width: 200px;
+  width: 145px;
   background: rgba(0,0,0,0.6);
   color: #fff;
   border-radius: 5px;
   padding: .5em;
+  cursor: pointer;
 }
 
 .item-name {
@@ -110,7 +112,7 @@ footer {
 
 
 .item img {
-  height: 1.5em;
+  height: 3em;
   display: block; 
   margin: .5em auto;
 }
@@ -201,7 +203,7 @@ footer {
   background: #eee;
 }
 
-#dialog-item-add {
+#dialog-item-add, #dialog-update form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

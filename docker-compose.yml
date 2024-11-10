@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www/html
     environment:
+      API_TOKEN: ${API_TOKEN}
       MYSQL_HOST: db
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}

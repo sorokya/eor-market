@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
 $_SESSION['username'] = $username;
 
 echo json_encode(['data' => [
-  'message' => 'Please verify in game by whispering !eomarket ' . $code,
+  'message' => 'Please verify in game by whispering !eomarket register ' . $code,
 ]]);
 
 function generateVerifyCode() {

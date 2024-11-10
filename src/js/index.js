@@ -64,14 +64,18 @@ function loadMyItems() {
 
   const $dialog = $('#dialog-update');
   const $preview = $dialog.find('#add-item-preview');
-  const $amount = $dialog.find('[name="amount"]');
-  const $price = $dialog.find('[name="price"]');
-  const $form = $dialog.find('form');
-  const $btnRemove = $dialog.find('#btn-remove-item');
 
-  $form.unbind('submit').submit(function(e) {
-    e.preventDefault();
-  });
+  const $saleForm = $dialog.find('#form-make-sale');
+  const $saleBuyName = $saleForm.find('[name="buy-name"]');
+  const $saleAmount = $saleForm.find('[name="buy-amount"]');
+  const $saleTotal = $saleForm.find('[name="buy-total"]');
+
+  const $updateForm = $dialog.find('#form-update-item');
+  const $updateAmount = $updateForm.find('[name="amount"]');
+  const $updatePrice = $updateForm.find('[name="price"]');
+
+  const $btnDeleteItem = $dialog.find('#btn-delete-item');
+  const $btnUpdateItem = $dialog.find('#btn-update-item');
 
   $.get('/api/list-my-items.php', function(res) {
     if (res.error) {
@@ -83,8 +87,6 @@ function loadMyItems() {
 
     $results.empty();
 
-
-
     res.data.forEach(function(item) {
       const $item = $(document.createElement('div'));
       $item.addClass('item');
@@ -94,15 +96,19 @@ function loadMyItems() {
       $item.append(`<p>Amount: <strong>${item.amount}</strong></p>`);
       $item.append(`<p>Price: <strong>${item.price}</strong></p>`);
 
-
-
       $item.click(function() {
         $preview.find('img').attr('src', `https://eor-api.exile-studios.com/api/items/${item.id}/graphic/ground`);
         $preview.find('.item-name').text(item.name);
-        $amount.val(item.amount);
-        $price.val(item.price);
 
-        $btnRemove.unbind('click').click(function() {
+        $saleAmount.val(item.amount);
+        $saleTotal.val(item.amount * item.price);
+        $saleBuyName.val('');
+
+        $updateAmount.val(item.amount);
+        $updatePrice.val(item.price);
+
+        $btnDeleteItem.unbind('click').click(function(e) {
+          e.preventDefault();
           Swal.fire({
             title: 'Are you sure?',
             text: `Your ${item.name} will be removed from the market`,
@@ -127,23 +133,34 @@ function loadMyItems() {
           });
         });
 
-        $form.unbind('submit').submit(function(e) {
+        $btnUpdateItem.unbind('click').click(function(e) {
           e.preventDefault();
 
-          onSubmit({
+          updateSubmit({
             id: item.id,
-            price: parseInt($price.val().trim()),
-            amount: parseInt($amount.val().trim()),
+            price: parseInt($updatePrice.val().trim(), 10),
+            amount: parseInt($updateAmount.val().trim(), 10),
           });
 
           return;
         });
 
+        $saleForm.unbind('submit').submit(function(e) {
+          e.preventDefault();
+
+          saleSubmit({
+            id: item.id,
+            buyer: $saleBuyName.val().trim(),
+            amount: parseInt($saleAmount.val().trim(), 10),
+            total: parseInt($saleTotal.val().trim(), 10),
+          });
+        });
+
         $dialog.dialog({
-          title: 'Update item',
+          title: 'Manage Listing',
           modal: true,
-          width: 400,
-          height: 200,
+          width: 700,
+          height: 420,
         });
       });
 
@@ -151,7 +168,7 @@ function loadMyItems() {
     });
   });
 
-  function onSubmit(item) {
+  function updateSubmit(item) {
     if (!item.price || item.price < 1) {
       showError('Price can not be less than 1');
       return;
@@ -169,11 +186,35 @@ function loadMyItems() {
       }
 
       showSuccess('Your item has been updated. Good luck!');
-
-      $dialog.dialog('close');
-
       loadMyItems();
+      $dialog.dialog('close');
+    });
+  }
 
+  function saleSubmit(sale) {
+    if (sale.buyer.length < 3 || sale.buyer.length > 12) {
+      showError('Buyer name must be between 3 and 12 characters');
+      return;
+    }
+
+    if (!sale.amount || sale.amount < 1) {
+      showError('Amount can not be less than 1');
+      return;
+    }
+
+    if (!sale.total || sale.total < 1) {
+      showError('Total can not be less than 1');
+      return;
+    }
+
+    $.post('/api/make-sale.php', sale, function(res) {
+      if (res.error) {
+        showError(res.error);
+        return;
+      }
+
+      showSuccess('Your sale has been submitted!');
+      loadMyItems();
       $dialog.dialog('close');
     });
   }
@@ -485,11 +526,22 @@ function buyItem(itemId, sellerName, price, amount) {
   const $dialog = $('#dialog-buy');
   const $pre = $dialog.find('pre');
   const $amount = $dialog.find('[name="amount"]');
+  const $txtAmount = $dialog.find('[name="txt-amount"]');
   const $btn = $dialog.find('button');
 
   $amount.attr('max', amount);
-  $amount.unbind('input').on('input', updateText);
-  $amount.val(1);
+  $amount.unbind('input').on('input', function() {
+    $txtAmount.val($amount.val());
+    updateText();
+  });
+
+  $txtAmount.unbind('input').on('input', function() {
+    $amount.val($txtAmount.val());
+    updateText();
+  });
+
+  $amount.val(amount);
+  $txtAmount.val(amount);
 
   function updateText() {
     const totalAmount = $amount.val();

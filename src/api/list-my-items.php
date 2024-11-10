@@ -14,7 +14,7 @@ $items = getItemList();
 
 $mysqli = openConnection();
 
-$stmt = $mysqli->prepare("SELECT `item_id`, `amount`, `price` FROM Offers WHERE `account_id` = ?");
+$stmt = $mysqli->prepare("SELECT `item_id`, `amount`, `price` FROM Offers WHERE `created_by` = ?");
 $stmt->bind_param("i", $user->id);
 $stmt->execute();
 

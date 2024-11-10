@@ -14,11 +14,30 @@ CREATE TABLE IF NOT EXISTS `Accounts` (
 
 CREATE TABLE IF NOT EXISTS `Offers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `FK_ACCOUNT_ID_ACCOUNT` (`account_id`) USING BTREE,
-  CONSTRAINT `FK_ACCOUNT_ID_ACCOUNT` FOREIGN KEY (`account_id`) REFERENCES `Accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+  KEY `FK_ACCOUNT_ID_ACCOUNT` (`created_by`) USING BTREE,
+  CONSTRAINT `FK_ACCOUNT_ID_ACCOUNT` FOREIGN KEY (`created_by`) REFERENCES `Accounts` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+CREATE TABLE `Sales` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`item_id` INT(11) NOT NULL,
+	`amount` INT(11) NOT NULL,
+  `total` INT(11) NOT NULL,
+	`buyer` VARCHAR(12) NOT NULL,
+  `verified` TINYINT(1) NOT NULL DEFAULT 0,
+  `asked_buyer` TINYINT(1) NOT NULL DEFAULT 0,
+	`created_by` INT(11) NOT NULL,
+	`created_at` DATETIME NOT NULL DEFAULT current_timestamp(),
+	`updated_at` DATETIME NULL DEFAULT NULL,
+	`deleted` TINYINT(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `FK_Sales_CreatedBy_Accounts` (`created_by`) USING BTREE,
+	CONSTRAINT `FK_Sales_CreatedBy_Accounts` FOREIGN KEY (`created_by`) REFERENCES `Accounts` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 );

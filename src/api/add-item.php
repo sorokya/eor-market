@@ -38,7 +38,7 @@ if ($amount < 1) {
 
 $mysqli = openConnection();
 
-$stmt = $mysqli->prepare("SELECT `item_id` FROM Offers WHERE `account_id` = ? AND `item_id` = ?");
+$stmt = $mysqli->prepare("SELECT `item_id` FROM Offers WHERE `created_by` = ? AND `item_id` = ?");
 $stmt->bind_param("ii", $user->id, $item_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
   exit;
 }
 
-$stmt = $mysqli->prepare("INSERT INTO Offers (`account_id`, `item_id`, `amount`, `price`) VALUES (?, ?, ?, ?)");
+$stmt = $mysqli->prepare("INSERT INTO Offers (`created_by`, `item_id`, `amount`, `price`) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("iiii", $user->id, $item_id, $amount, $price);
 $stmt->execute();
 

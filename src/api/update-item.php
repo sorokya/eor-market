@@ -31,7 +31,7 @@ if ($amount < 1) {
 
 $mysqli = openConnection();
 
-$stmt = $mysqli->prepare("UPDATE Offers SET `amount` = ?, `price` = ? WHERE `account_id` = ? AND `item_id` = ?");
+$stmt = $mysqli->prepare("UPDATE Offers SET `amount` = ?, `price` = ?, `updated_at` = NOW() WHERE `created_by` = ? AND `item_id` = ?");
 $stmt->bind_param("iiii", $amount, $price, $user->id, $item_id);
 $stmt->execute();
 

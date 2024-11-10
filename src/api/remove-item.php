@@ -18,7 +18,7 @@ if ($item_id < 3) {
 
 $mysqli = openConnection();
 
-$stmt = $mysqli->prepare("DELETE FROM Offers WHERE `account_id` = ? AND `item_id` = ?");
+$stmt = $mysqli->prepare("DELETE FROM Offers WHERE `created_by` = ? AND `item_id` = ?");
 $stmt->bind_param("ii", $user->id, $item_id);
 $stmt->execute();
 

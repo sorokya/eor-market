@@ -27,25 +27,41 @@ if ($user == null) {
   <? include './footer.php'; ?>
 
   <div id="dialog-update" style="display: none">
-    <form>
-      <div id="add-item-preview">
-        <img src="#" />
-        <span class="item-name"></span>
-      </div>
-      <div>
-        <div>
-          <label for="add-item-amount">Amount</label><br />
-          <input type="number" name="amount" id="add-item-amount">
-        </div>
-        <div>
-          <label for="add-item-price">Price</label><br />
-          <input type="number" name="price" id="add-item-price">
-        </div>
-        <br />
-        <button type="button" id="btn-remove-item">Remove</button>
-        <button type="submit">Update</button>
-      </div>
-    </form>
+    <div id="add-item-preview">
+      <img src="#" />
+      <span class="item-name"></span>
+    </div>
+    <div>
+      <form id="form-make-sale">
+        <fieldset>
+          <legend>Sell Item</legend>
+          <em>Note: Buyer will be asked to confirm the sale in order for it to effect marketplace
+            statistics..</em><br /><br />
+
+          <label>Buyer name</label><br />
+          <input type="text" name="buy-name" /><br />
+          <label>Amount</label><br />
+          <input type="text" name="buy-amount" /><br />
+          <label>Total</label><br />
+          <input type="number" name="buy-total" /><br /><br />
+          <button id="btn-make-sale">Make Sale</button>
+        </fieldset>
+      </form>
+      <form id="form-update-item">
+        <fieldset>
+          <legend>Update Item</legend>
+          <em>Note: Updates the current amount and price of the item. Will not effect marketplace
+            statistics.</em><br /><br />
+
+          <label>Amount</label><br />
+          <input type="text" name="amount" /><br />
+          <label>Price</label><br />
+          <input type="number" name="price" /><br /><br />
+          <button id="btn-update-item">Update</button>
+          <button id="btn-delete-item">Delete</button>
+        </fieldset>
+      </form>
+    </div>
   </div>
 
   <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>

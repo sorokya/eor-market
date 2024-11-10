@@ -82,6 +82,7 @@ $offers = getItemOffers($item_id);
   <div id="dialog-buy" style="display: none">
     <label>Amount</label><br />
     <input name="amount" type="range" min="1" step="1" />
+    <input name="txt-amount" type="number" />
     <pre></pre>
     <button>Copy to clipboard</button>
   </div>

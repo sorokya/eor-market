@@ -32,6 +32,9 @@ $user = isset($_COOKIE['user']) ? json_decode($_COOKIE['user']) : null;
   <script type="text/javascript" src="js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="js/sweetalert.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+
+  <script async src="https://stats.richardleek.com/script.js"
+    data-website-id="0d0dbc74-41de-4e7d-b1f2-622481b9531b"></script>
 </body>
 
 </html>

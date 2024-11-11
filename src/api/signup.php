@@ -2,7 +2,7 @@
 
 include './config.php';
 
-const FIVE_MINUTES = 5 * 50;
+const FIVE_MINUTES = 5 * 60;
 
 $username = $_POST['username'];
 $password = $_POST['password'];

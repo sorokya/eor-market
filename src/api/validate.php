@@ -1,6 +1,6 @@
 <?php
 
-const FIVE_MINUTES = 5 * 50;
+const FIVE_MINUTES = 5 * 60;
 
 include './config.php';
 

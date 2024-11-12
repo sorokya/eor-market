@@ -32,7 +32,7 @@ CREATE TABLE `Sales` (
   `total` INT(11) NOT NULL,
 	`buyer` VARCHAR(12) NOT NULL,
   `verified` TINYINT(1) NOT NULL DEFAULT 0,
-  `asked_buyer` TINYINT(1) NOT NULL DEFAULT 0,
+  `notified` TINYINT(1) NOT NULL DEFAULT 0,
 	`created_by` INT(11) NOT NULL,
 	`created_at` DATETIME NOT NULL DEFAULT current_timestamp(),
 	`updated_at` DATETIME NULL DEFAULT NULL,
